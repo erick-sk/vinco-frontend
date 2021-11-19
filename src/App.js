@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import clientAxios from './config/axios';
 
 // components
 import Patients from './components/Patients';
@@ -7,6 +9,23 @@ import NewDate from './components/NewDate';
 import Date from './components/Date';
 
 function App() {
+  // app state
+  const [dates, setDates] = useState([]);
+
+  useEffect(() => {
+    const consultAPI = () => {
+      clientAxios
+        .get('/patients')
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    consultAPI();
+  }, []);
+
   return (
     <Router>
       <Routes>
