@@ -1,11 +1,28 @@
 import React from 'react';
-import { Center } from '@chakra-ui/react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// components
+import Patients from './components/Patients';
+import NewDate from './components/NewDate';
+import Date from './components/Date';
 
 function App() {
   return (
-    <Center h="100px" color="black">
-      Hello world!
-    </Center>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Patients />} />
+        <Route path="/new" element={<NewDate />} />
+        <Route path="/date/:id" element={<Date />} />
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: '1rem', textAlign: 'center' }}>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
