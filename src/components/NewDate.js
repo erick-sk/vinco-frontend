@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
   Container,
   Heading,
@@ -10,6 +12,8 @@ import {
   Input,
   Textarea,
 } from '@chakra-ui/react';
+
+import clientAxios from '../config/axios';
 
 const NewDate = () => {
   // generate the state as an object
@@ -29,6 +33,23 @@ const NewDate = () => {
     });
   };
 
+  // use for redirection
+  const navigate = useNavigate();
+
+  // sent request to API
+  const createNewDate = (e) => {
+    e.preventDefault();
+
+    // sent request via axios
+    clientAxios.post('/patients', date).then((response) => {
+      console.log(response);
+      console.log(date);
+
+      // redirect
+      navigate('/');
+    });
+  };
+
   return (
     <Box minH="100vh" bgGradient="linear(to-r, green.200, pink.500)">
       <Heading as="h1" size="xl" textAlign="center" pt={4}>
@@ -44,7 +65,7 @@ const NewDate = () => {
 
         <Container maxW="container.md" mt={8} bg="gray.200" p={4}>
           {/* Form */}
-          <form>
+          <form onSubmit={createNewDate}>
             <FormControl id="name" mb={4}>
               <FormLabel htmlFor="name">Pet's Name</FormLabel>
               <Input
@@ -89,7 +110,7 @@ const NewDate = () => {
               />
             </FormControl>
 
-            <FormControl id="time" mb={4}>
+            <FormControl id="symptoms" mb={4}>
               <FormLabel htmlFor="symptoms">Symptoms</FormLabel>
               <Textarea
                 name="symptoms"
