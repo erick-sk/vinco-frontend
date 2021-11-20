@@ -38,7 +38,7 @@ const Patients = ({ dates }) => {
             align="stretch"
           >
             {dates.map((date) => (
-              <Box key={date._id}>
+              <Box as="a" href={`/date/${date._id}`} key={date._id}>
                 {/* Name and Dates */}
                 <Flex>
                   <Heading
