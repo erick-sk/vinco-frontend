@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Heading,
@@ -12,6 +12,23 @@ import {
 } from '@chakra-ui/react';
 
 const NewDate = () => {
+  // generate the state as an object
+  const [date, setDate] = useState({
+    name: '',
+    owner: '',
+    date: '',
+    time: '',
+    symptoms: '',
+  });
+
+  // read data from form
+  const updateState = (e) => {
+    setDate({
+      ...date,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <Box minH="100vh" bgGradient="linear(to-r, green.200, pink.500)">
       <Heading as="h1" size="xl" textAlign="center" pt={4}>
@@ -28,13 +45,14 @@ const NewDate = () => {
         <Container maxW="container.md" mt={8} bg="gray.200" p={4}>
           {/* Form */}
           <form>
-            <FormControl id="pet" mb={4}>
-              <FormLabel htmlFor="pet">Pet's Name</FormLabel>
+            <FormControl id="name" mb={4}>
+              <FormLabel htmlFor="name">Pet's Name</FormLabel>
               <Input
-                name="pet"
+                name="name"
                 type="text"
                 borderColor="pink.400"
                 focusBorderColor="pink.400"
+                onChange={updateState}
               />
             </FormControl>
 
@@ -45,6 +63,7 @@ const NewDate = () => {
                 type="text"
                 borderColor="pink.400"
                 focusBorderColor="pink.400"
+                onChange={updateState}
               />
             </FormControl>
 
@@ -55,6 +74,7 @@ const NewDate = () => {
                 type="date"
                 borderColor="pink.400"
                 focusBorderColor="pink.400"
+                onChange={updateState}
               />
             </FormControl>
 
@@ -65,6 +85,7 @@ const NewDate = () => {
                 type="time"
                 borderColor="pink.400"
                 focusBorderColor="pink.400"
+                onChange={updateState}
               />
             </FormControl>
 
@@ -75,6 +96,7 @@ const NewDate = () => {
                 borderColor="pink.400"
                 focusBorderColor="pink.400"
                 resize="none"
+                onChange={updateState}
               ></Textarea>
             </FormControl>
 
