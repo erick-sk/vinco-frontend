@@ -11,27 +11,33 @@ import Date from './components/Date';
 function App() {
   // app state
   const [dates, setDates] = useState([]);
+  const [consult, setConsult] = useState(true);
 
   useEffect(() => {
-    const consultAPI = () => {
-      clientAxios
-        .get('/patients')
-        .then((response) => {
-          // set data in state
-          setDates(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    consultAPI();
-  }, []);
+    if (consult) {
+      const consultAPI = () => {
+        clientAxios
+          .get('/patients')
+          .then((response) => {
+            // set data in state
+            setDates(response.data);
+
+            // disable consult
+            setConsult(false);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+      consultAPI();
+    }
+  }, [consult]);
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Patients dates={dates} />} />
-        <Route path="/new" element={<NewDate />} />
+        <Route path="/new" element={<NewDate setConsult={setConsult} />} />
         <Route path="/date/:id" element={<Date />} />
         <Route
           path="*"

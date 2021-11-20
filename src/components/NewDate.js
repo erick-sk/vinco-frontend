@@ -15,7 +15,7 @@ import {
 
 import clientAxios from '../config/axios';
 
-const NewDate = () => {
+const NewDate = (props) => {
   // generate the state as an object
   const [date, setDate] = useState({
     name: '',
@@ -43,7 +43,8 @@ const NewDate = () => {
     // sent request via axios
     clientAxios.post('/patients', date).then((response) => {
       console.log(response);
-      console.log(date);
+
+      props.setConsult(true);
 
       // redirect
       navigate('/');
