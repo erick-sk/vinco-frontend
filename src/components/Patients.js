@@ -23,7 +23,14 @@ const Patients = ({ dates }) => {
 
       <Container maxW="container.xl">
         <Center mt={12}>
-          <Button colorScheme="pink" variant="solid">
+          <Button
+            as="a"
+            target="_blank"
+            href="/new"
+            colorScheme="pink"
+            variant="solid"
+            rel="noopener noreferrer"
+          >
             Create Date
           </Button>
         </Center>
