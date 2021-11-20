@@ -17,7 +17,8 @@ function App() {
       clientAxios
         .get('/patients')
         .then((response) => {
-          console.log(response);
+          // set data in state
+          setDates(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -29,7 +30,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Patients />} />
+        <Route path="/" element={<Patients dates={dates} />} />
         <Route path="/new" element={<NewDate />} />
         <Route path="/date/:id" element={<Date />} />
         <Route
