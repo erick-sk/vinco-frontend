@@ -41,31 +41,33 @@ const Patients = ({ dates }) => {
             align="stretch"
           >
             {dates.map((date) => (
-              <Box as="a" href={`/date/${date._id}`} key={date._id}>
-                {/* Name and Dates */}
-                <Flex>
-                  <Heading
-                    as="h3"
-                    size="md"
-                    color="pink.800"
-                    textTransform="uppercase"
-                  >
-                    {date.name}
-                  </Heading>
-                  <Spacer />
-                  <Text fontWeight="bold" color="pink.800" fontSize="md">
-                    {date.date} - {date.time}
+              <Link to={`/date/${date._id}`} key={date._id}>
+                <Box>
+                  {/* Name and Dates */}
+                  <Flex>
+                    <Heading
+                      as="h3"
+                      size="md"
+                      color="pink.800"
+                      textTransform="uppercase"
+                    >
+                      {date.name}
+                    </Heading>
+                    <Spacer />
+                    <Text fontWeight="bold" color="pink.800" fontSize="md">
+                      {date.date} - {date.time}
+                    </Text>
+                  </Flex>
+
+                  {/* Symptoms */}
+                  <Text my={4} fontSize="2xl">
+                    {date.symptoms}
                   </Text>
-                </Flex>
 
-                {/* Symptoms */}
-                <Text my={4} fontSize="2xl">
-                  {date.symptoms}
-                </Text>
-
-                {/* Info Owner */}
-                <Text fontWeight="bold">Owner: {date.owner}</Text>
-              </Box>
+                  {/* Info Owner */}
+                  <Text fontWeight="bold">Owner: {date.owner}</Text>
+                </Box>
+              </Link>
             ))}
           </VStack>
           {/* End info of a single Date */}
