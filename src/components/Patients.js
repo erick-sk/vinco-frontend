@@ -11,6 +11,7 @@ import {
   VStack,
   StackDivider,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const Patients = ({ dates }) => {
   if (dates.length === 0) return null;
@@ -23,8 +24,8 @@ const Patients = ({ dates }) => {
 
       <Container maxW="container.xl">
         <Center mt={12}>
-          <Button as="a" href="/new" colorScheme="pink" variant="solid">
-            Create Date
+          <Button colorScheme="pink" variant="solid">
+            <Link to={'/new'}>Create Date</Link>
           </Button>
         </Center>
 

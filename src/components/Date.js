@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 import {
@@ -76,8 +76,8 @@ const Date = (props) => {
       </Heading>
 
       <Center mt={12}>
-        <Button as="a" href="/" colorScheme="pink" variant="solid">
-          Back Home
+        <Button colorScheme="pink" variant="solid">
+          <Link to={'/'}>Back Home</Link>
         </Button>
       </Center>
 

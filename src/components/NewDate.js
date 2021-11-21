@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import {
   Container,
@@ -59,8 +59,8 @@ const NewDate = (props) => {
 
       <Container maxW="container.xl" pb={8}>
         <Center mt={12}>
-          <Button as="a" href="/" colorScheme="pink" variant="solid">
-            Back Home
+          <Button colorScheme="pink" variant="solid">
+            <Link to={'/'}>Back Home</Link>
           </Button>
         </Center>
 
