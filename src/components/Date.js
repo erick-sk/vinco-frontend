@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import {
   Container,
@@ -40,11 +41,29 @@ const Date = (props) => {
   const deleteSingleInfo = (e) => {
     e.preventDefault();
 
-    clientAxios.delete(`/patients/${id}`).catch((error) => console.log(error));
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // delete alert!
+        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
 
-    props.setConsult(true);
-
-    navigator('/');
+        // delete from database
+        clientAxios
+          .delete(`/patients/${id}`)
+          .then(() => {
+            props.setConsult(true);
+            navigator('/');
+          })
+          .catch((error) => console.log(error));
+      }
+    });
   };
 
   // use for redirect
