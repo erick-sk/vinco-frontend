@@ -76,9 +76,11 @@ const Date = (props) => {
       </Heading>
 
       <Center mt={12}>
-        <Button colorScheme="pink" variant="solid">
-          <Link to={'/'}>Back Home</Link>
-        </Button>
+        <Link to={'/'}>
+          <Button colorScheme="pink" variant="solid">
+            Back Home
+          </Button>
+        </Link>
       </Center>
 
       <Container maxW="container.md" mt={8} bg="gray.200">

@@ -24,9 +24,11 @@ const Patients = ({ dates }) => {
 
       <Container maxW="container.xl">
         <Center mt={12}>
-          <Button colorScheme="pink" variant="solid">
-            <Link to={'/new'}>Create Date</Link>
-          </Button>
+          <Link to={'/new'}>
+            <Button colorScheme="pink" variant="solid">
+              Create Date
+            </Button>
+          </Link>
         </Center>
 
         <Container maxW="container.md" mt={8}>
