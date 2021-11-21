@@ -38,7 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Patients dates={dates} />} />
         <Route path="/new" element={<NewDate setConsult={setConsult} />} />
-        <Route path="/date/:id" element={<Date />} />
+        <Route path="/date/:id" element={<Date setConsult={setConsult} />} />
         <Route
           path="*"
           element={

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import {
   Container,
@@ -14,7 +14,7 @@ import {
 
 import clientAxios from '../config/axios';
 
-const Date = () => {
+const Date = (props) => {
   // state of date
   const { id } = useParams();
   const [info, setInfo] = useState([]);
@@ -35,6 +35,20 @@ const Date = () => {
     getSingleInfoAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // delete a single record by id
+  const deleteSingleInfo = (e) => {
+    e.preventDefault();
+
+    clientAxios.delete(`/patients/${id}`).catch((error) => console.log(error));
+
+    props.setConsult(true);
+
+    navigator('/');
+  };
+
+  // use for redirect
+  const navigator = useNavigate();
 
   return (
     <Box minH="100vh" bgGradient="linear(to-r, green.200, pink.500)">
@@ -76,7 +90,13 @@ const Date = () => {
 
           {/* Button Delete */}
           <Center>
-            <Button mt={8} colorScheme="red" variant="solid" type="submit">
+            <Button
+              onClick={deleteSingleInfo}
+              mt={8}
+              colorScheme="red"
+              variant="solid"
+              type="submit"
+            >
               Delete
             </Button>
           </Center>
